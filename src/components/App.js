@@ -1,10 +1,11 @@
 import React from 'react';
+import SearchBar from './SearchBar';
 
 const App = (props) => {
 
     return (
         <div>
-            App
+            <SearchBar />
         </div>
     );
 };
