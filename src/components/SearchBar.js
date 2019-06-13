@@ -11,10 +11,19 @@ class SearchBar extends React.Component {
         this.setState({searchTerm: event.target.value});
     }
 
+    //Using arrow functions of ES2015 so that the binding takes place automatically, and we don't have to do 
+    //the binding manually. If we had declared a regular function like the one above, we would have required to 
+    //create a constructor and within it, we would have needed to do this.onFormSubmit = this.onFormSubmit.bind(this);
+    //for this function to work as expected.
+    onFormSubmit = event => {
+        event.preventDefault();
+        console.log(this.state.searchTerm);
+    }
+
     render() {
         return (
             <div className="ui segment">
-                <form className="ui form">
+                <form onSubmit={this.onFormSubmit} className="ui form">
                     <div className="field">
                         <label>Image Search </label> <br/>
                         {/* This is the syntax for passing a function with an argument */}
