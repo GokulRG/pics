@@ -4,8 +4,8 @@ import SearchBar from './SearchBar';
 
 class App extends React.Component {
 
-    onSearchSubmit = (term) => {
-        axios.get("https://api.unsplash.com/search/photos",{
+    async onSearchSubmit(term) {
+        const result = await axios.get("https://api.unsplash.com/search/photos",{
             headers: {
                 Authorization: 'Client-ID 2e48b6e1b70c9091ff05ed2433b786ed40188a65a7948f4f270780c6458b7d1f'
             }, 
@@ -13,6 +13,12 @@ class App extends React.Component {
                 query: term
             }
         });
+        //This is how you would use promises to retrieve the results
+        // .then((result) => {
+        //     console.log(result.data.results);
+        // });
+
+        console.log(result.data.results);
     }
 
     render() {
