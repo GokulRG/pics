@@ -6,7 +6,7 @@ class ImageCard extends React.Component {
     //height
     constructor(props) {
         super(props);
-
+        this.state = {spans : 0};
         this.imageRef = React.createRef();
     }
 
@@ -26,15 +26,23 @@ class ImageCard extends React.Component {
     }
 
     setSpans = () => {
-        console.log(this.imageRef.current.clientHeight);
-    }
+        const height = this.imageRef.current.clientHeight;
+        const spans = Math.ceil(height/10);
+
+        //If we have the same name for the key and value , we can shorten it using ES2015 syntax, to 
+        //just take the name of the value
+        //this.setState({spans : spans});
+
+        this.setState({spans});
+    };
 
     render() {
 
         const {description, urls} = this.props.image;
 
         return (
-            <div>
+            //We pass the inline styling from the spans value that we have saved on the state
+            <div style={{ gridRowEnd : `span ${this.state.spans}`}}>
                 <img ref={this.imageRef} alt={description} src={urls.regular} />
             </div>
         );
